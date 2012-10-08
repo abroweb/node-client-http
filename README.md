@@ -1,5 +1,8 @@
 # node-client-http: Easy to make client HTTP/HTTPS request
 
+## Fork changes
+1. Allow pass proxy to request {host:"8.8.8.8", port:80}
+
 ## Feature List
 
 1. Automatic proxy setting, if you set the proxy in your environment variable(http_proxy), it will be auto detected and used in your any HTTP request, also it will be used in your HTTPS request by HTTPS Tunnel(denpency by node-tunnel) to make HTTPS request through HTTP.
@@ -12,13 +15,14 @@
     
     var http = require('client-http');
 
-    http.get("http://www.google.com/", function(data){
+    http.get("http://www.google.com/",{host:"8.8.8.8", port:80}, function(data){
         data && console.log(data);
     });
 
 ## Installation
 
-    $ npm install client-http
+    git clone git://github.com/abroweb/node-client-http.git
+    npm install
 
 ## Usages
 
@@ -26,7 +30,7 @@
 
     var http = require('client-http');
 
-    http.get("https://www.google.com/", function(data){
+    http.get("https://www.google.com/",{host:"8.8.8.8", port:80}, function(data){
         data && console.log(data);
     });
 
@@ -34,7 +38,7 @@
 
     var http = require('client-http');
 
-    http.get("http://www.google.com/", function(data, err, cookie){
+    http.get("http://www.google.com/",{host:"8.8.8.8", port:80}, function(data, err, cookie){
         !err && console.log(cookie);
     });
 
@@ -42,7 +46,7 @@
 
     var http = require('client-http');
 
-    http.request("http://www.snee.com/xml/crud/posttest.cgi", function(data){
+    http.request("http://www.snee.com/xml/crud/posttest.cgi",{host:"8.8.8.8", port:80}, function(data){
         data && console.log(data);
     }, "fname=hello&lname=world");
 
@@ -51,6 +55,6 @@
     var http = require('client-http');
 
     // we use iPhone as our user-agent and see what happen
-    http.request("http://twitter.com/", function(data){
+    http.request("http://twitter.com/",{host:"8.8.8.8", port:80}, function(data){
         data && console.log(data);
     }, null, {"User-Agent": "iPhone"});
